@@ -1,0 +1,11 @@
+.env
+.oci/
+*.pem
+*.key
+*.crt
+*.pfx
+__pycache__/
+.ipynb_checkpoints/
+data/
+*.pdf
+

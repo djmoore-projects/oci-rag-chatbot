@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-from typing import List, Tuple
-
 from langchain_community.vectorstores import OracleVS
 from langchain_core.documents import Document
 
@@ -12,7 +10,7 @@ def similarity_search(
     vector_store: OracleVS,
     query: str,
     k: int = 4,
-) -> List[Document]:
+) -> list[Document]:
     """Return the *k* most relevant chunks for *query*.
 
     Args:
@@ -30,7 +28,7 @@ def similarity_search_with_score(
     vector_store: OracleVS,
     query: str,
     k: int = 4,
-) -> List[Tuple[Document, float]]:
+) -> list[tuple[Document, float]]:
     """Return chunks paired with their cosine similarity scores.
 
     Scores closer to 1.0 indicate higher relevance. Useful for evaluation
@@ -39,6 +37,6 @@ def similarity_search_with_score(
     return vector_store.similarity_search_with_score(query, k=k)
 
 
-def assemble_context(docs: List[Document], separator: str = "\n\n---\n\n") -> str:
+def assemble_context(docs: list[Document], separator: str = "\n\n---\n\n") -> str:
     """Concatenate retrieved chunk texts into a single context string."""
     return separator.join(doc.page_content for doc in docs)

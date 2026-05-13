@@ -2,15 +2,13 @@
 
 from __future__ import annotations
 
-from unittest.mock import MagicMock, patch, call
+from unittest.mock import MagicMock, patch
 
-import pytest
 from langchain_core.documents import Document
 
-from src.retrieval.query_engine import similarity_search, assemble_context
-from src.retrieval.vector_store import build_vector_store, ingest_documents
 from src.generation.rag_chain import build_rag_chain
-
+from src.retrieval.query_engine import assemble_context, similarity_search
+from src.retrieval.vector_store import build_vector_store, ingest_documents
 
 # ---------------------------------------------------------------------------
 # Helpers
@@ -19,7 +17,10 @@ from src.generation.rag_chain import build_rag_chain
 
 def _docs(n: int) -> list[Document]:
     return [
-        Document(page_content=f"Chunk {i}: PropTech insight number {i}.", metadata={"source": f"doc{i}.pdf"})
+        Document(
+            page_content=f"Chunk {i}: PropTech insight number {i}.",
+            metadata={"source": f"doc{i}.pdf"},
+        )
         for i in range(n)
     ]
 
@@ -38,7 +39,7 @@ def test_build_vector_store_returns_oracle_vs(mock_oracle_vs_cls):
     fake_embeddings = MagicMock()
     mock_oracle_vs_cls.return_value = MagicMock()
 
-    vs = build_vector_store(fake_conn, fake_embeddings)
+    build_vector_store(fake_conn, fake_embeddings)
 
     mock_oracle_vs_cls.assert_called_once()
     kwargs = mock_oracle_vs_cls.call_args.kwargs

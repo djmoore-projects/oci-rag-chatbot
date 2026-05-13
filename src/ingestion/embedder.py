@@ -4,10 +4,8 @@ from __future__ import annotations
 
 import os
 
-import oci
 from langchain_community.embeddings import OCIGenAIEmbeddings
 from oci.generative_ai_inference import GenerativeAiInferenceClient
-
 
 _DEFAULT_MODEL = "cohere.embed-english-v3.0"
 _DEFAULT_ENDPOINT = "https://inference.generativeai.us-chicago-1.oci.oraclecloud.com"
@@ -22,7 +20,7 @@ def _build_oci_config() -> dict:
     required = ["OCI_USER", "OCI_FINGERPRINT", "OCI_TENANCY", "OCI_REGION", "OCI_KEY_FILE"]
     missing = [k for k in required if not os.getenv(k)]
     if missing:
-        raise EnvironmentError(f"Missing OCI environment variables: {missing}")
+        raise OSError(f"Missing OCI environment variables: {missing}")
 
     return {
         "user": os.environ["OCI_USER"],

@@ -2,9 +2,7 @@
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from typing import List
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_core.documents import Document
@@ -15,7 +13,7 @@ def load_and_chunk(
     pdf_dir: str | Path,
     chunk_size: int = 1000,
     chunk_overlap: int = 100,
-) -> List[Document]:
+) -> list[Document]:
     """Load every PDF in *pdf_dir* and return a flat list of text chunks.
 
     Args:
@@ -43,7 +41,7 @@ def load_and_chunk(
         chunk_overlap=chunk_overlap,
     )
 
-    chunks: List[Document] = []
+    chunks: list[Document] = []
     for pdf_path in pdf_files:
         loader = PyPDFLoader(str(pdf_path))
         pages = loader.load()

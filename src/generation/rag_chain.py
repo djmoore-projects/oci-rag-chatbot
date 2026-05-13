@@ -2,8 +2,6 @@
 
 from __future__ import annotations
 
-import os
-
 from langchain_classic.chains import create_retrieval_chain
 from langchain_classic.chains.combine_documents import create_stuff_documents_chain
 from langchain_community.chat_models.oci_generative_ai import ChatOCIGenAI
@@ -11,7 +9,6 @@ from langchain_community.vectorstores import OracleVS
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import Runnable
 from oci.generative_ai_inference import GenerativeAiInferenceClient
-
 
 _SYSTEM_PROMPT = (
     "You are a knowledgeable PropTech assistant. "

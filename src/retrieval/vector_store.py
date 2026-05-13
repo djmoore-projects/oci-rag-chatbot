@@ -3,14 +3,12 @@
 from __future__ import annotations
 
 import os
-from typing import List
 
 import oracledb
 from langchain_community.embeddings import OCIGenAIEmbeddings
 from langchain_community.vectorstores import OracleVS
 from langchain_community.vectorstores.utils import DistanceStrategy
 from langchain_core.documents import Document
-
 
 _TABLE_NAME = "PROPTECH_KNOWLEDGE"
 _EMBEDDING_DIM = 1024
@@ -64,7 +62,7 @@ def build_vector_store(
 
 def ingest_documents(
     vector_store: OracleVS,
-    chunks: List[Document],
+    chunks: list[Document],
 ) -> int:
     """Add *chunks* to *vector_store* and return the count of stored vectors."""
     vector_store.add_documents(chunks)

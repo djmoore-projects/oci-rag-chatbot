@@ -2,17 +2,14 @@
 
 from __future__ import annotations
 
-import os
 from pathlib import Path
-from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
 
 import pytest
 from langchain_core.documents import Document
 
+from src.ingestion.embedder import _build_oci_config, build_embeddings
 from src.ingestion.pdf_loader import load_and_chunk
-from src.ingestion.embedder import build_embeddings, _build_oci_config
-
 
 # ---------------------------------------------------------------------------
 # pdf_loader tests
@@ -94,7 +91,7 @@ def test_oci_config_raises_on_missing_env(monkeypatch: pytest.MonkeyPatch):
     for key in ["OCI_USER", "OCI_FINGERPRINT", "OCI_TENANCY", "OCI_REGION", "OCI_KEY_FILE"]:
         monkeypatch.delenv(key, raising=False)
 
-    with pytest.raises(EnvironmentError, match="Missing OCI environment variables"):
+    with pytest.raises(OSError, match="Missing OCI environment variables"):
         _build_oci_config()
 
 

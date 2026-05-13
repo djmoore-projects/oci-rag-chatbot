@@ -5,7 +5,16 @@
 *.crt
 *.pfx
 __pycache__/
+*.pyc
 .ipynb_checkpoints/
 data/
 *.pdf
+.DS_Store
+anaconda_projects/
+dist/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
 
